@@ -1,0 +1,152 @@
+/* Dracula-Themed Variables */
+:root {
+    /* Colors */
+    --background: #282a36;
+    --foreground: #f8f8f2;
+    --title-bar-bg: #44475a;
+    --subject-bg: #44475a;
+    --input-bg: #282a36;
+    --input-border: #6272a4;
+    --input-focus: #bd93f9;
+    --task-bg: #6272a4;
+    --task-text: #f8f8f2;
+    --task-delete: #ff5555;
+    --task-delete-hover: #ff79c6;
+    --title-text: #50fa7b;
+    --header-text: #8be9fd;
+
+    /* Spacing & Layout */
+    --border-radius: 10px;
+    --padding: 20px;
+    --gap: 20px;
+    --box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--foreground);
+    text-align: center;
+    padding: var(--padding);
+}
+
+/* Title Bar */
+.TitleBar {
+    background-color: var(--title-bar-bg);
+    color: var(--foreground);
+    padding: 15px 0;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.TitleBar h1 {
+    font-size: 24px;
+    color: var(--title-text);
+}
+
+/* Main Layout */
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--gap);
+    padding: var(--padding);
+}
+
+/* Subject Cards */
+.SubjectCategory {
+    background-color: var(--subject-bg);
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+    box-shadow: var(--box-shadow);
+    width: 300px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.SubjectCategory:hover {
+    transform: translateY(-5px);
+}
+
+.SubjectCategory h2 {
+    font-size: 22px;
+    color: var(--header-text);
+    margin-bottom: 10px;
+}
+
+/* Input Fields */
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid var(--input-border);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    margin-bottom: 10px;
+    background-color: var(--input-bg);
+    color: var(--foreground);
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: var(--input-focus);
+    outline: none;
+}
+
+/* Revision List */
+.RevisionList {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.RevisionList li {
+    background-color: var(--task-bg);
+    margin: 5px 0;
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    color: var(--task-text);
+}
+
+/* Task Text */
+.RevisionList li span {
+    flex-grow: 1;
+    text-align: left;
+}
+
+/* Optional Button (e.g., Delete) */
+.RevisionList li button {
+    background-color: var(--task-delete);
+    color: var(--foreground);
+    border: none;
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.RevisionList li button:hover {
+    background-color: var(--task-delete-hover);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .SubjectCategory {
+        width: 90%;
+    }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Scripts -->
+    <link rel="stylesheet" href="Scripts/Stylesheet.css">
+    <script src="Scripts/JavaScript.js" defer></script>
+    <title>Revision Reminder</title>
+</head>
+<body>
+    <div class="TitleBar">
+        <h1>Revision Reminder</h1>
+    </div>
+    <main>
+        <!-- History -->
+        <div class="SubjectCategory" id="History">
+            <h2></h2> <!-- Title Auto Populated by JavaScript -->
+            <input type="text" id="HistoryRevisionInput" placeholder="Enter Tasks" onkeydown="if(event.keyCode == 13) { AddItemToRevisionList('History'); }">
+            <ul class="RevisionList" id="HistoryRevisionList"></ul>
+        </div>
+        <!-- Maths -->
+        <div class="SubjectCategory" id="Maths">
+            <h2></h2> <!-- Title Auto Populated by JavaScript -->
+            <input type="text" id="MathsRevisionInput" placeholder="Enter Tasks" onkeydown="if(event.keyCode == 13) { AddItemToRevisionList('Maths'); }">
+            <ul class="RevisionList" id="MathsRevisionList"></ul>
+        </div>
+        <!-- Economics -->
+        <div class="SubjectCategory" id="Economics">
+            <h2></h2> <!-- Title Auto Populated by JavaScript -->
+            <input type="text" id="EconomicsRevisionInput" placeholder="Enter Tasks" onkeydown="if(event.keyCode == 13) { AddItemToRevisionList('Economics'); }">
+            <ul class="RevisionList" id="EconomicsRevisionList"></ul>
+        </div>
+    </main>
+</body>
+</html>
