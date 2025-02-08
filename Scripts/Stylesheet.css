@@ -11,15 +11,16 @@
     --task-bg: #6272a4;
     --task-text: #f8f8f2;
     --task-delete: #ff5555;
+    --task-confirm: #50fa7b;
     --task-delete-hover: #ff79c6;
     --title-text: #50fa7b;
     --header-text: #8be9fd;
 
     /* Spacing & Layout */
     --border-radius: 10px;
-    --padding: 20px;
-    --gap: 20px;
-    --box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    --padding: 15px;
+    --gap: 15px;
+    --box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 20px, rgba(0, 0, 0, 0.25) 0px 5px 5px;
 }
 
 /* General Styles */
@@ -41,7 +42,7 @@ body {
 .TitleBar {
     background-color: var(--title-bar-bg);
     color: var(--foreground);
-    padding: 15px 0;
+    padding: 15px;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 }
@@ -66,37 +67,63 @@ main {
     border-radius: var(--border-radius);
     padding: var(--padding);
     box-shadow: var(--box-shadow);
-    width: 300px;
+    width: 320px;
     text-align: center;
     transition: transform 0.2s ease-in-out;
 }
 
 .SubjectCategory:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
 }
 
 .SubjectCategory h2 {
-    font-size: 22px;
+    font-size: 20px;
     color: var(--header-text);
     margin-bottom: 10px;
 }
 
-/* Input Fields */
-input[type="text"] {
-    width: 80%;
+/* Input & Button Container */
+.InputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Input Field */
+.InputContainer input {
+    flex-grow: 1;
     padding: 10px;
     border: 2px solid var(--input-border);
     border-radius: var(--border-radius);
     font-size: 16px;
-    margin-bottom: 10px;
     background-color: var(--input-bg);
     color: var(--foreground);
     transition: border-color 0.3s ease;
 }
 
-input[type="text"]:focus {
+.InputContainer input:focus {
     border-color: var(--input-focus);
     outline: none;
+}
+
+/* Add Task Button */
+.AddTaskButton {
+    background-color: var(--task-confirm);
+    color: black;
+    border: none;
+    padding: 10px 14px;
+    border-radius: var(--border-radius);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.AddTaskButton:hover {
+    background-color: var(--task-delete-hover);
 }
 
 /* Revision List */
@@ -124,7 +151,7 @@ input[type="text"]:focus {
     text-align: left;
 }
 
-/* Optional Button (e.g., Delete) */
+/* Delete Task Button */
 .RevisionList li button {
     background-color: var(--task-delete);
     color: var(--foreground);
