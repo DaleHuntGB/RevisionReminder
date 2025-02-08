@@ -1,26 +1,27 @@
 /* Dracula-Themed Variables */
 :root {
     /* Colors */
-    --background: #282a36;
-    --foreground: #f8f8f2;
-    --title-bar-bg: #44475a;
-    --subject-bg: #44475a;
-    --input-bg: #282a36;
-    --input-border: #6272a4;
-    --input-focus: #bd93f9;
-    --task-bg: #6272a4;
-    --task-text: #f8f8f2;
-    --task-delete: #ff5555;
-    --task-confirm: #50fa7b;
-    --task-delete-hover: #ff79c6;
-    --title-text: #50fa7b;
-    --header-text: #8be9fd;
+    --BG: #282a36;
+    --FG: #f8f8f2;
+    --TitleBG: #44475a;
+    --SubjectBG: #3b3f55;
+    --InputBG: #282a36;
+    --InputBGLighter: #44475a;
+    --InputBorder: #6272a4;
+    --InputFocus: #bd93f9;
+    --TaskBG: #6272a4;
+    --TaskText: #f8f8f2;
+    --ButtonDelete: #50fa7b;
+    --ButtonAdd: #50fa7b;
+    --ButtonHover: #ff79c6;
+    --TitleText: #50fa7b;
+    --HeaderText: #8be9fd;
 
     /* Spacing & Layout */
-    --border-radius: 10px;
-    --padding: 15px;
-    --gap: 15px;
-    --box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 20px, rgba(0, 0, 0, 0.25) 0px 5px 5px;
+    --BorderRadius: 3px;
+    --Padding: 24px;
+    --Gap: 18px;
+    --BoxShadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
 }
 
 /* General Styles */
@@ -29,27 +30,29 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
+    font-size: 1em;
 }
 
 body {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: var(--BG);
+    color: var(--FG);
     text-align: center;
-    padding: var(--padding);
+    padding: var(--Padding);
 }
 
 /* Title Bar */
 .TitleBar {
-    background-color: var(--title-bar-bg);
-    color: var(--foreground);
-    padding: 15px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+    background-color: var(--TitleBG);
+    color: var(--FG);
+    padding: var(--Padding);
+    border-radius: var(--BorderRadius);
+    box-shadow: var(--BoxShadow);
 }
 
 .TitleBar h1 {
     font-size: 24px;
-    color: var(--title-text);
+    color: var(--TitleText);
+    font-weight: bold;
 }
 
 /* Main Layout */
@@ -57,92 +60,90 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--gap);
-    padding: var(--padding);
+    gap: var(--Gap);
+    padding: var(--Padding);
 }
 
 /* Subject Cards */
 .SubjectCategory {
-    background-color: var(--subject-bg);
-    border-radius: var(--border-radius);
-    padding: var(--padding);
-    box-shadow: var(--box-shadow);
-    width: 320px;
+    background-color: var(--SubjectBG);
+    border-radius: var(--BorderRadius);
+    padding: var(--Padding);
+    box-shadow: var(--BoxShadow);
+    width: 640px;
     text-align: center;
-    transition: transform 0.2s ease-in-out;
-}
-
-.SubjectCategory:hover {
-    transform: translateY(-3px);
 }
 
 .SubjectCategory h2 {
-    font-size: 20px;
-    color: var(--header-text);
-    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: var(--HeaderText);
+    margin-bottom: 12px;
+    font-weight: bold;
 }
 
 /* Input & Button Container */
 .InputContainer {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
+    justify-content: space-between;
+    gap: var(--Gap);
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 /* Input Field */
 .InputContainer input {
     flex-grow: 1;
-    padding: 10px;
-    border: 2px solid var(--input-border);
-    border-radius: var(--border-radius);
+    padding: 12px;
+    border-radius: var(--BorderRadius);
+    border: none;
     font-size: 16px;
-    background-color: var(--input-bg);
-    color: var(--foreground);
-    transition: border-color 0.3s ease;
+    background-color: var(--InputBG);
+    color: var(--FG);
+    box-shadow: var(--BoxShadow);
 }
 
 .InputContainer input:focus {
-    border-color: var(--input-focus);
+    border-color: var(--InputFocus);
     outline: none;
+    background-color: var(--InputBGLighter);
 }
 
 /* Add Task Button */
 .AddTaskButton {
-    background-color: var(--task-confirm);
+    background-color: var(--ButtonAdd);
     color: black;
     border: none;
-    padding: 10px 14px;
-    border-radius: var(--border-radius);
-    font-size: 18px;
+    padding: 10px 12px;
+    border-radius: var(--BorderRadius);
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease;
 }
 
 .AddTaskButton:hover {
-    background-color: var(--task-delete-hover);
+    background-color: var(--ButtonHover);
 }
 
 /* Revision List */
 .RevisionList {
     list-style-type: none;
     padding: 0;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .RevisionList li {
-    background-color: var(--task-bg);
+    background-color: var(--TaskBG);
     margin: 5px 0;
     padding: 8px 12px;
-    border-radius: var(--border-radius);
+    border-radius: var(--BorderRadius);
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 16px;
-    color: var(--task-text);
+    color: var(--TaskText);
+    box-shadow: var(--BoxShadow);
 }
 
 /* Task Text */
@@ -153,17 +154,31 @@ main {
 
 /* Delete Task Button */
 .RevisionList li button {
-    background-color: var(--task-delete);
-    color: var(--foreground);
+    background-color: var(--ButtonDelete);
+    color: black;
     border: none;
-    padding: 5px 10px;
-    border-radius: var(--border-radius);
+    padding: 10px 12px;
+    border-radius: var(--BorderRadius);
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease;
 }
 
 .RevisionList li button:hover {
-    background-color: var(--task-delete-hover);
+    background-color: var(--ButtonHover);
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: var(--HeaderText);
+    padding-bottom: 3em;
 }
 
 /* Responsive Design */
@@ -172,8 +187,18 @@ main {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .SubjectCategory {
-        width: 90%;
+        width: 95%;
+    }
+
+    .InputContainer {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .InputContainer input,
+    .AddTaskButton {
+        width: 100%;
     }
 }
