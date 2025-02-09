@@ -11,7 +11,7 @@
     --InputFocus: #bd93f9;
     --TaskBG: #6272a4;
     --TaskText: #f8f8f2;
-    --ButtonDelete: #50fa7b;
+    --ButtonDelete: #ff4040;
     --ButtonAdd: #50fa7b;
     --ButtonHover: #ff79c6;
     --TitleText: #50fa7b;
@@ -126,6 +126,38 @@ main {
     background-color: var(--ButtonHover);
 }
 
+.DeleteTaskButton {
+    background-color: var(--ButtonDelete);
+    color: black;
+    border: none;
+    padding: 10px 12px;
+    border-radius: var(--BorderRadius);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.DeleteTaskButton:hover {
+    background-color: var(--ButtonHover);
+}
+
+.CompleteTaskButton {
+    background-color: var(--ButtonAdd);
+    color: black;
+    border: none;
+    padding: 10px 12px;
+    border-radius: var(--BorderRadius);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.CompleteTaskButton:hover {
+    background-color: var(--ButtonHover);
+}
+
 /* Revision List */
 .RevisionList {
     list-style-type: none;
@@ -150,23 +182,7 @@ main {
 .RevisionList li span {
     flex-grow: 1;
     text-align: left;
-}
-
-/* Delete Task Button */
-.RevisionList li button {
-    background-color: var(--ButtonDelete);
-    color: black;
-    border: none;
-    padding: 10px 12px;
-    border-radius: var(--BorderRadius);
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.RevisionList li button:hover {
-    background-color: var(--ButtonHover);
+    padding-left: 12px;
 }
 
 footer {

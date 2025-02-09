@@ -20,26 +20,31 @@ function LoadStoredTasks() {
         let storedTasks = JSON.parse(localStorage.getItem(divID)) || [];
         storedTasks.forEach(task => {
             let revisionItem = document.createElement("li");
-            revisionItem.innerHTML = `<span>${task}</span> <button class="DeleteTaskButton" onclick="RemoveTask('${divID}', this)">&#10003</button>`;
+            let isCompleted = task.includes("(Completed)");
+            revisionItem.innerHTML = `<button class="DeleteTaskButton" onclick="RemoveTask('${divID}', this)">X</button> 
+                                      <span>${task}</span> 
+                                      <button class="CompleteTaskButton" onclick="CompleteTask('${divID}', this)">&#10003</button>`;
             revisionList.appendChild(revisionItem);
         });
     });
-    UpdateTaskCount();
+    AddTaskCountToHeaderText();
 }
 
 // Add Task to Revision List.
 // Save Task to Local Storage.
 function AddItemToRevisionList(divID) {
     let revisionInput = document.querySelector(`#${divID} input`);
-    if (!revisionInput || revisionInput.value.trim() === "") { alert("Please Enter Information."); return; }
+    if (!revisionInput || revisionInput.value.trim() === "") { alert("Please Enter A Task."); return; }
     let revisionList = document.querySelector(`#${divID} .RevisionList`);
     let itemText = revisionInput.value.trim();
     let revisionItem = document.createElement("li");
-    revisionItem.innerHTML = `<span>${itemText}</span> <button class="DeleteTaskButton" onclick="RemoveTask('${divID}', this)">&#10003</button>`;
+    revisionItem.innerHTML = `<button class="DeleteTaskButton" onclick="RemoveTask('${divID}', this)">X</button> 
+                              <span>${itemText}</span> 
+                              <button class="CompleteTaskButton" onclick="CompleteTask('${divID}', this)">&#10003</button>`;
     revisionList.appendChild(revisionItem);
     SaveTaskToLocalStorage(divID, itemText);
     revisionInput.value = "";
-    UpdateTaskCount();
+    AddTaskCountToHeaderText();
 }
 
 // Write Task to Local Storage.
@@ -57,25 +62,48 @@ function RemoveTask(divID, buttonElement) {
     let storedTasks = JSON.parse(localStorage.getItem(divID)) || [];
     storedTasks = storedTasks.filter(task => task !== taskText);
     localStorage.setItem(divID, JSON.stringify(storedTasks));
-    alert("Nicely done! You finished " + taskText);
-    UpdateTaskCount();
+    alert(taskText + " has been removed.");
+    AddTaskCountToHeaderText();
 }
 
-// Add Number of Tasks to Header Text
+// Mark task as completed.
+function CompleteTask(divID, buttonElement) {
+    let taskSpan = buttonElement.parentElement.querySelector("span");
+    let taskText = taskSpan.textContent;
+    if (!taskText.includes("(Completed)")) {
+        taskSpan.textContent = taskText + " (Completed)";
+        UpdateLocalStorageCompletion(divID, taskText);
+    }
+    AddTaskCountToHeaderText();
+}
+
+// Update local storage to reflect completed tasks.
+function UpdateLocalStorageCompletion(divID, taskText) {
+    let storedTasks = JSON.parse(localStorage.getItem(divID)) || [];
+    let taskIndex = storedTasks.indexOf(taskText);
+    if (taskIndex !== -1) {
+        storedTasks[taskIndex] = taskText + " (Completed)";
+        localStorage.setItem(divID, JSON.stringify(storedTasks));
+    }
+}
+
+// Add Number of Completed Tasks and Total Tasks to Header Text
 function AddTaskCountToHeaderText() {
     document.querySelectorAll(".SubjectCategory").forEach(subject => {
         let divID = subject.id;
         let revisionList = document.querySelector(`#${divID} .RevisionList`);
-        let taskCount = revisionList.children.length;
+        let totalTaskCount = revisionList.children.length;
+        let completedTaskCount = Array.from(revisionList.children).filter(item => item.textContent.includes("(Completed)")).length;
         let divH2 = subject.querySelector("h2");
         if (divH2) {
-            divH2.textContent = `${divID.toUpperCase()} (${taskCount})`;
+            let taskCompletionPercentage = Math.round((completedTaskCount / totalTaskCount) * 100);
+            if (isNaN(taskCompletionPercentage)) { taskCompletionPercentage = 0; }
+            if (totalTaskCount === 0)
+                divH2.textContent = `${divID.toUpperCase()}`;
+            else
+                divH2.textContent = `${divID.toUpperCase()} (${taskCompletionPercentage}%)`;
         }
     });
-}
-
-function UpdateTaskCount() {
-    AddTaskCountToHeaderText();
 }
 
 document.addEventListener("DOMContentLoaded", AddTaskCountToHeaderText);
